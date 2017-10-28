@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>帝都网络</title>
+    <style>
+        .name{
+            margin: 0 auto;
+            width: 700px;
+        }
+        .top{
+            margin: 0 auto;
+            width: 700px;
+            height: 40px;
+        }
+        .top ul li{
+            list-style: none;
+            float: left;
+            height: 40px;
+            width: 140px;
+            text-align: center;
+            font-size: 23px;
+        }
+        table th,table td{
+            border: 1px solid black;
+            height: 30px;
+            text-align: center;
+        }
+        .alteruser{
+            width: 60%;
+            height: 160px;
+            min-width: 600px;
+            position: fixed;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            text-align: center;
+            background-color: gray;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .tableform tr,.tableform td{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<!-- 上传 -->
+<div class="uploadform">
+    <form id="uploadhypermarket" action="HypermarketUp" method="post" enctype="multipart/form-data">
+        <table class="tableform">
+            <thead>123123</thead>
+            <tr>
+                <td>商家属性<input type="text" value="" name="classify" style="width:60px;"></td>
+                <td>专场图片<input type="file" value="" name="files" style="width:60px;"></td>
+                <td>专场名字<input type="text" value="" name="title" style="width:60px;"></td>
+                <td>开拼时间<input type="text" value="" name="time" style="width:60px;"></td>
+                <td>专场地点<input type="text" value="" name="location" style="width:60px;"></td>
+            </tr>
+            <tr>
+                <td>专场描述<textarea name="describ"></textarea></td>
+                <td>价格区间<input type="text" name="price" value="" style="width:60px;"></td>
+                <td>专场档次<input type="text" name="grade" value="" style="width:60px;"></td>
+                <td>专场备注<textarea name="remark"></textarea></td>
+                <td>专场排序<input type="text" name="pai" value="" style="width:60px;"></td>
+                <td>专场所属<input type="text" name="property" value="" style="width:60px;"></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="uploadbutton">提交修改</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!-- 修改 -->
+<div class="alteruser">
+    <form id="alterform" action="1213" method="post" enctype="multipart/form-data">
+        <table class="tableform">
+            <thead>123123</thead>
+            <tr>
+                <td style="display: none"><input class="hypermarketid" name="id" type="text" value=""></td>
+                <td>商家属性<input class="hypermarketclassify" name="classify" type="text" value="" style="width:60px;"></td>
+                <td>专场图片<input class="hypermarketurl" name="files" type="file" style="width:60px;"></td>
+                <td>专场名字<input class="hypermarkettitle" name="title" type="text" value="" style="width:60px;"></td>
+                <td>开拼时间<input class="hypermarkettime" name="time" type="text" value="" style="width:60px;"></td>
+                <td>专场地点<input class="hypermarketlocation" name="location" type="text" value="" style="width:60px;"></td>
+            </tr>
+            <tr>
+                <td>专场描述<input class="hypermarketdescrib" name="describ" type="text" value="" style="width:60px;"></td>
+                <td>价格区间<input class="hypermarketprice" name="price" type="text" value="" style="width:60px;"></td>
+                <td>专场档次<input class="hypermarketgrade" name="grade" type="text" value="" style="width:60px;"></td>
+                <td>专场备注<input class="hypermarketremark" name="remark" type="text" value="" style="width:60px;"></td>
+                <td>专场排序<input class="hypermarketchang" name="pai" type="text" value="" style="width:60px;"></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="alteruserinfo">提交修改</button></td>
+                <td></td>
+                <td><button type="button" class="giveupalter">放弃修改</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div class="top">
+    <ul>
+        <li class="li1"><input type="text" value="7" style="display: none;">主页的专场</li>
+        <li class="li2"><input type="text" value="4" style="display: none;">全部商家的</li>
+        <li class="li3"><input type="text" value="5" style="display: none;">厂家专供</li>
+        <li class="li4"><input type="text" value="6" style="display: none;">一批专供</li>
+    </ul>
+</div>
+<table class="name" cellspacing="0">
+    <tr>
+        <th>id</th>
+        <th>专场属性</th>
+        <th>主场图片</th>
+        <th>主场名字</th>
+        <th>开拼时间</th>
+        <th>地点</th>
+        <th>描述</th>
+        <th>价格区间</th>
+        <th>档次</th>
+        <th>备注</th>
+        <th>排序</th>
+        <th>删除</th>
+        <th>修改</th>
+    </tr>
+</table>
+<script type="text/template" id="template">
+    <tr>
+        <td><%=id%></td>
+        <td><%=classify%></td>
+        <td><%=url%></td>
+        <td><%=title%></td>
+        <td><%=time%></td>
+        <td><%=location%></td>
+        <td><%=describ%></td>
+        <td><%=price%></td>
+        <td><%=grade%></td>
+        <td><%=remark%></td>
+        <td><%=pai%></td>
+        <td><button class="deleteslider">删除</button></td>
+        <td><button class="alter">修改</button></td>
+    </tr>
+</script>
+<script src="js/jquery-1.12.3.min.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/jquery.form.js"></script>
+<!--上传-->
+<script>
+    $('.uploadbutton').click(function(){
+        var options  = {
+            url:"HypermarketUp",   //同action
+            type:'post',
+            dataType: 'json',
+            success:function(data)
+            {
+                console.log(data)
+            },
+            error :function(data)
+            {
+                console.log(1)
+                console.log(data);
+            },
+        };
+//        if ($(".uploadfile").val()=='') {
+//            alert('上传失败哦！请检查输入内容')
+//        }else{
+            $("#uploadhypermarket").ajaxSubmit(options);
+//        }
+    })
+</script>
+<script>
+var templateStr = $('#template').html();
+var compile = _.template(templateStr);
+var array = [];
+var userbianhao = localStorage.getItem('bianhao');
+ $('.li1').click(function(){anli("queryHypermarket?property=7");});
+ $('.li2').click(function(){anli("queryHypermarket?property=6");});
+ $('.li3').click(function(){anli("queryHypermarket?property=5");});
+ $('.li4').click(function(){anli("queryHypermarket?property=4");});
+ function anli(urll) {
+     $.get(urll,function(data){
+        var obj = data;
+        console.log(obj);
+        $(obj).each(function(i){
+            var dictionary = obj[i];
+            var domstr = compile(dictionary);
+            $('.name').append($(domstr));
+            array.push(dictionary);
+        });
+        // 删除
+        $('.deleteslider').each(function(i){
+            $(this).click(function(){
+                var aa = array[i].id;
+                console.log(aa);
+                 if(confirm("确定要删除吗？")){
+                     var that =$(this)
+                     $.get('removeHypermarket',{'id':aa},function(data){
+                         console.log(data);
+                         if(data == 'true'){
+                             that.parent().parent().remove();
+                         }else{
+                             alert('删除失败');
+                         }
+                     });
+                 }
+            });
+        });
+        //修改
+        $('.alter').each(function(i){
+            $(this).click(function(){
+                var aa = array;
+                $('.alteruser').show();
+                $('.giveupalter').click(function(){
+                    $('.alteruser').hide()
+                });
+                $('.hypermarketid').val(aa[i].id);
+                $('.hypermarketclassify').val(aa[i].classify);
+                $('.hypermarkettitle').val(aa[i].title);
+                $('.hypermarkettime').val(aa[i].time);
+                $('.hypermarketlocation').val(aa[i].location);
+                $('.hypermarketdescrib').val(aa[i].describ);
+                $('.hypermarketprice').val(aa[i].price);
+                $('.hypermarketgrade').val(aa[i].grade);
+                $('.hypermarketremark').val(aa[i].remark);
+                $('.hypermarketchang').val(aa[i].pai);
+                // 修改
+                $(".alteruserinfo").click(function(){
+                    var options  = {
+                        url:'updateHypermarket',   //同action
+                        type:'post',
+                        dataType: 'json',
+                        success:function(data)
+                        {
+                            console.log(data);
+                            alert('修改成功');
+                            $('.sliderupdata').hide()
+                        },
+                        error :function(data)
+                        {
+                            console.log(data);
+                        },
+                    };
+                    //console.log($('.sliderfile').val())
+                    if ($('.sliderfile').val()=='') {
+                        alert('您没有选中图片')
+                    }else{
+                        $('#alterform').ajaxSubmit(options);
+                    }
+                });
+
+            });
+        });
+
+     });
+ }
+</script>
+</body>
+</html>

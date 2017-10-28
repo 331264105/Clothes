@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>帝都网络科技</title>
+  <style>
+  		*{
+  			margin: 0px;
+  			padding: 0px;
+  		}
+  		body{
+  			width: 100%;
+  			height: 100%;
+  			background: url('http://www.cycphp.top/Didu/images/banner1.jpg');
+  		}
+  		header{
+  			width: 100%;
+  			height: 60px;
+  		}
+  		.header-left,.kefu{
+  			float: left;
+  			width: 600px;
+  			height: 60px;
+  			text-align: center;
+  			line-height: 60px;
+  		}
+  		.kefu{
+  			width: 100px;
+  		}
+		nav{
+			width: 100%;
+			height: 600px;
+		}
+		nav .nav-left{
+			float: left;
+			width: 10%;
+			height: 100%;
+			margin-left: 20px;	
+		}
+		nav .nav-left1{
+			width: 10%;
+			min-width: 1400px;
+		}
+		nav .nav-left .left1{
+			text-align: center;
+			line-height: 40px; 
+			height: 80px;
+			width: 100%
+		}
+		nav .nav-left .left1 a{
+			color: black;
+			font-size: 20px;
+			text-decoration: none;
+		}
+		iframe{
+			float: left;
+		}
+		nav .nav-right{
+			float: right;
+			width: 15%;
+			height: 100%;
+		}
+		
+  </style>
+	<script>
+		function ifrm(canshu){
+			document.getElementById('iframe').src = canshu;
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<div class="header-left">
+			<h2>帝都网络科技 </h2>
+		</div>
+		<div class="kefu"> 
+			一键客服
+		</div>
+	</header>
+	<nav>
+		<div class="nav-left">
+			<div class="left1">
+				<a href="#" id="shouye.html" onclick="ifrm(this.id)">首页</a>
+			</div>
+			<div class="left1">
+				<a href="#" id="guanliyuan.html" onclick="ifrm(this.id)">管理员</a>
+			</div>		
+			<!--<div class="left1">-->
+				<!--<a href="#" id="ziyingspgl.html" onclick="ifrm(this.id)">自营商品上架</a>-->
+			<!--</div>	-->
+			<div class="left1">
+				<a href="#" id="spzhanshi.html" onclick="ifrm(this.id)">商品展示</a>
+			</div>	
+			<div class="left1">
+				<a href="#" id="sjgl.html" onclick="ifrm(this.id)" >商家管理</a>
+			</div>
+			<div class="left1">
+				<a href="#" id="shangjiaspgl.html" onclick="ifrm(this.id)">商家服装上架</a>
+			</div>	
+			<div class="left1">
+				<a href="#" id="zhuanchanggl.html" onclick="ifrm(this.id)" >专场管理</a>
+			</div>
+			<div class="left1">
+				<a href="#" id="user.html" onclick="ifrm(this.id)" >客户信息</a>
+			</div>		
+		</div>
+			<!-- 中间框架 -->
+		<iframe id="iframe" src="zhuanchanggl.html"  width="65%" height="600" frameborder="0" style="background-color: white; opacity: 0.86;font-family:myFirstFont;"></iframe>
+		<div class="nav-right">
+			<img src="" alt="">
+		</div>
+	</nav>
+	<script  src="js/jquery-1.12.3.min.js"></script>
+	<script>
+		var username = localStorage.getItem('username');
+	    var number =  localStorage.getItem('number');
+		if(number==''){
+	        location.href='http://www.cycphp.top';
+	    }else{
+	     	$('.kefu').click(function(){
+				console.log(1);
+				// window.navigate('https://mpkf.weixin.qq.com/')
+			});
+			if (number == 001) {
+				$('.administrator').show();
+	    	}
+	    }
+	</script>
+</body>
+</html>
