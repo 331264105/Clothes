@@ -34,7 +34,7 @@ public class HypermarketControl {
         }
         return dir;
     }
-    //上传图片
+    //上传专场
     @RequestMapping("/HypermarketUp")
     @ResponseBody
     public String addVideo(@RequestParam(name = "files", required = false) CommonsMultipartFile[] files, @ModelAttribute(value = "dir") File dir

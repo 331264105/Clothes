@@ -1,7 +1,6 @@
 package com.didu.dao;
 
 import com.didu.domain.Hypermarket;
-import com.didu.domain.Navigation;
 import com.didu.sql.HypermarketSql;
 import org.apache.ibatis.annotations.*;
 

@@ -58,7 +58,7 @@ public class CarouselControl {
                     if (fileName.length() > 50) {
                         fileName = fileName.substring(fileName.length() - 51);
                     }
-                    File file1 = new File(dir, System.currentTimeMillis() +"_"+ fileName);
+                    File file1 = new File(dir,System.currentTimeMillis() +"_"+ fileName);
                     files[i].transferTo(file1);
                     picture.setName(file1.getName());
                     picture.setUrl("carousel/" + file1.getName());

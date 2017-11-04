@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/10/28.
@@ -33,6 +34,28 @@ public class LoginControl {
             }
         }
     }
-
-
+    @RequestMapping("/register")
+    @ResponseBody
+    public String register(User user){
+        boolean s = adminService.register(user);
+        if (s){
+            return  "true";
+        }
+        return "false";
+    }
+    @RequestMapping("/updateUser")
+    @ResponseBody
+    public String updateUser(User user){
+        System.out.println(user);
+        boolean b =adminService.updateUser(user);
+        if (b){
+            return "true";
+        }
+        return "false";
+    }
+    @RequestMapping("/queryUser")
+    @ResponseBody
+    public List<User> queryUser(){
+        return adminService.queryUser();
+    }
 }

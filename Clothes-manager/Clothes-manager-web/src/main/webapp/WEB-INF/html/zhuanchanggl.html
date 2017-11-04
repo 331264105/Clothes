@@ -1,11 +1,9 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>帝都网络</title>
+    <meta charset="UTF-8">
+    <title>Document</title>
     <style>
         .name{
             margin: 0 auto;
@@ -45,6 +43,10 @@
         }
         .tableform tr,.tableform td{
             border: none;
+        }
+        img{
+            width: 100px;
+            height: 50px;
         }
     </style>
 </head>
@@ -111,7 +113,7 @@
         <li class="li4"><input type="text" value="6" style="display: none;">一批专供</li>
     </ul>
 </div>
-<table class="name" cellspacing="0">
+<table class="tablename" cellspacing="0">
     <tr>
         <th>id</th>
         <th>专场属性</th>
@@ -132,7 +134,7 @@
     <tr>
         <td><%=id%></td>
         <td><%=classify%></td>
-        <td><%=url%></td>
+        <td><img src="<%=url%>" alt=""></td>
         <td><%=title%></td>
         <td><%=time%></td>
         <td><%=location%></td>
@@ -168,95 +170,99 @@
 //        if ($(".uploadfile").val()=='') {
 //            alert('上传失败哦！请检查输入内容')
 //        }else{
-            $("#uploadhypermarket").ajaxSubmit(options);
+        $("#uploadhypermarket").ajaxSubmit(options);
 //        }
     })
 </script>
 <script>
-var templateStr = $('#template').html();
-var compile = _.template(templateStr);
-var array = [];
-var userbianhao = localStorage.getItem('bianhao');
- $('.li1').click(function(){anli("queryHypermarket?property=7");});
- $('.li2').click(function(){anli("queryHypermarket?property=6");});
- $('.li3').click(function(){anli("queryHypermarket?property=5");});
- $('.li4').click(function(){anli("queryHypermarket?property=4");});
- function anli(urll) {
-     $.get(urll,function(data){
-        var obj = data;
-        console.log(obj);
-        $(obj).each(function(i){
-            var dictionary = obj[i];
-            var domstr = compile(dictionary);
-            $('.name').append($(domstr));
-            array.push(dictionary);
-        });
-        // 删除
-        $('.deleteslider').each(function(i){
-            $(this).click(function(){
-                var aa = array[i].id;
-                console.log(aa);
-                 if(confirm("确定要删除吗？")){
-                     var that =$(this)
-                     $.get('removeHypermarket',{'id':aa},function(data){
-                         console.log(data);
-                         if(data == 'true'){
-                             that.parent().parent().remove();
-                         }else{
-                             alert('删除失败');
-                         }
-                     });
-                 }
+    var templateStr = $('#template').html();
+    var compile = _.template(templateStr);
+   // var userbianhao = localStorage.getItem('bianhao');
+    anli("queryHypermarket?property=7");
+    $('.li1').click(function(){$('.tablename').html('');anli("queryHypermarket?property=7");});
+    $('.li2').click(function(){$('.tablename').html('');anli("queryHypermarket?property=4");});
+    $('.li3').click(function(){$('.tablename').html('');anli("queryHypermarket?property=5");});
+    $('.li4').click(function(){$('.tablename').html('');anli("queryHypermarket?property=6");});
+    function anli(urll) {
+        var array = [];
+        $.get(urll,function(data){
+            var obj = data;
+           //console.log(obj);
+            $(obj).each(function(i){
+                var dictionary = obj[i];
+                var domstr = compile(dictionary);
+                $('.tablename').append($(domstr));
+                array.push(dictionary);
             });
-        });
-        //修改
-        $('.alter').each(function(i){
-            $(this).click(function(){
-                var aa = array;
-                $('.alteruser').show();
-                $('.giveupalter').click(function(){
-                    $('.alteruser').hide()
-                });
-                $('.hypermarketid').val(aa[i].id);
-                $('.hypermarketclassify').val(aa[i].classify);
-                $('.hypermarkettitle').val(aa[i].title);
-                $('.hypermarkettime').val(aa[i].time);
-                $('.hypermarketlocation').val(aa[i].location);
-                $('.hypermarketdescrib').val(aa[i].describ);
-                $('.hypermarketprice').val(aa[i].price);
-                $('.hypermarketgrade').val(aa[i].grade);
-                $('.hypermarketremark').val(aa[i].remark);
-                $('.hypermarketchang').val(aa[i].pai);
-                // 修改
-                $(".alteruserinfo").click(function(){
-                    var options  = {
-                        url:'updateHypermarket',   //同action
-                        type:'post',
-                        dataType: 'json',
-                        success:function(data)
-                        {
+            // 删除
+            //console.log(array)
+            $('.deleteslider').each(function(i){
+                //console.log(array)
+                $(this).click(function(){
+                    var aa = array[i].id;
+                    console.log(aa);
+                    if(confirm("确定要删除吗？")){
+                        var that =$(this)
+                        $.get('removeHypermarket',{'id':aa},function(data){
                             console.log(data);
-                            alert('修改成功');
-                            $('.sliderupdata').hide()
-                        },
-                        error :function(data)
-                        {
-                            console.log(data);
-                        },
-                    };
-                    //console.log($('.sliderfile').val())
-                    if ($('.sliderfile').val()=='') {
-                        alert('您没有选中图片')
-                    }else{
-                        $('#alterform').ajaxSubmit(options);
+                            if(data == 'true'){
+                                that.parent().parent().remove();
+                            }else{
+                                alert('删除失败');
+                            }
+                        });
                     }
                 });
-
             });
-        });
+            //修改
+            $('.alter').each(function(i){
+                $(this).click(function(){
+                    var aa = array;
+                    $('.alteruser').show();
+                    $('.giveupalter').click(function(){
+                        $('.alteruser').hide()
+                    });
+                    console.log(aa[i])
+                    $('.hypermarketid').val(aa[i].id);
+                    $('.hypermarketclassify').val(aa[i].classify);
+                    $('.hypermarkettitle').val(aa[i].title);
+                    $('.hypermarkettime').val(aa[i].time);
+                    $('.hypermarketlocation').val(aa[i].location);
+                    $('.hypermarketdescrib').val(aa[i].describ);
+                    $('.hypermarketprice').val(aa[i].price);
+                    $('.hypermarketgrade').val(aa[i].grade);
+                    $('.hypermarketremark').val(aa[i].remark);
+                    $('.hypermarketchang').val(aa[i].pai);
+                    // 修改
+                    $(".alteruserinfo").click(function(){
+                        var options  = {
+                            url:'updateHypermarket',   //同action
+                            type:'post',
+                            dataType: 'json',
+                            success:function(data)
+                            {
+                                console.log(data);
+                                alert('修改成功');
+                                $('.sliderupdata').hide()
+                            },
+                            error :function(data)
+                            {
+                                console.log(data);
+                            },
+                        };
+                        //console.log($('.sliderfile').val())
+                        if ($('.sliderfile').val()=='') {
+                            alert('您没有选中图片')
+                        }else{
+                            $('#alterform').ajaxSubmit(options);
+                        }
+                    });
 
-     });
- }
+                });
+            });
+
+        });
+    }
 </script>
 </body>
 </html>

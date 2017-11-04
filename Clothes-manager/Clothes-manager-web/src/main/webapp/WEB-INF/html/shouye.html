@@ -150,12 +150,12 @@
             dataType: 'json',
             success:function(data)
             {
-                console.log(data)
+                alert('上传成功');
+                myrefresh();
             },
             error :function(data)
             {
-                console.log(1)
-                console.log(data);
+                console.log('失败')
             },
         };
         if ($(".uploadfile").val()=='') {
@@ -222,6 +222,7 @@
                                 console.log(data);
                                 alert('修改成功');
                                 $('.navupdata').hide()
+                                myrefresh();
                             },
                             error :function(data)
                             {
@@ -257,58 +258,59 @@
     daohang();
     function daohang() {
         $.get('queryNavigation',function(data){
-            var obj2 = data;
-            console.log(obj2);
-            $(obj2).each(function(i){
-                var dictionary2 = obj2[i];
+            var navobj = data;
+            //console.log(navobj);
+            $(navobj).each(function(i){
+                var dictionary2 = navobj[i];
                 var domstr2 = compile2(dictionary2);
                 //console.log(domstr2);
                 $('.name2').append($(domstr2));
-                array.push(dictionary2);
+                array2.push(dictionary2);
             });
             $('.alter2').each(function(i){
                 $(this).click(function(){
-                    var username = localStorage.getItem('username');
-                    var number = localStorage.getItem('number');
-                    console.log(number);
-                    if(number == 001){
-                        var aid = array;
-                        console.log(aid[i].id)
-                        $('.navupdata').show();
-
-                        $(".navalter").click(function(){
-                            var options  = {
-                                url:"updateNavigation",   //同action
-                                type:'post',
-                                dataType: 'json',
-                                success:function(data)
-                                {
-                                    console.log(data);
-                                    alert('修改成功');
-                                    $('.navupdata').hide()
-                                },
-                                error :function(data)
-                                {
-                                    console.log(data);
-                                },
-                            };
-                            if ($('.navfile').val()==''||$('.navtext').val()=='') {
-                                alert('您没有选中图片')
-                            }else{
-                                $("#navupdataform").ajaxSubmit(options);
-                            }
-                        });
-                        $('.giveupalter').click(function(){
+                    var navd = array2;
+                    console.log(navd[i])
+                    $('.navupdata').show();
+                    $('.navid').val(navd[i].id);
+                    $('.navtext').val(navd[i].text);
+                    $(".navalter").click(function(){
+                        var options  = {
+                            url:"updateNavigation",   //同action
+                            type:'post',
+                            dataType: 'json',
+                            success:function(data)
+                            {
+                                console.log(data);
+                                alert('修改成功');
+                                $('.navupdata').hide()
+                                myrefresh()
+                            },
+                            error :function(data)
+                            {
+                                console.log(data);
+                            },
+                        };
+                        if ($('.navfile').val()==''||$('.navtext').val()=='') {
+                            alert('您没有选中图片');
                             $('.navupdata').hide()
-                        });
-                        $('.navid').val(aid[i].id);
-                    }else{
-                        alert('您暂时不是超级管理员,没有这个权限')
-                    }
+                        }else{
+                            $("#navupdataform").ajaxSubmit(options);
+                        }
+                    });
+                    $('.giveupalter').click(function(){
+                        $('.navupdata').hide()
+                    });
                 });
             });
         });
     }
+</script>
+<script>
+    function myrefresh()
+        {
+           window.location.reload();
+        }
 </script>
 </body>
 </html>
