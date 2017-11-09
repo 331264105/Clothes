@@ -9,16 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/10/28.
  */
 @Controller
-@Scope("prototype")
 public class LoginControl {
     @Autowired
     private LoginService adminService;
+    //管理员登陆
     @RequestMapping("/login")
     @ResponseBody
     public String login(User admin,HttpServletRequest request){
@@ -26,22 +27,54 @@ public class LoginControl {
         if (u==null){
             return "false";
         }else{
-            if((u.getUsername()).equals(admin.getUsername())&&(u.getPassword()).equals(admin.getPassword())){
-                request.setAttribute("user",u);
+            if((u.getUserphone()).equals(admin.getUserphone())&&(u.getPassword()).equals(admin.getPassword())&&(u.getStatus().equals(admin.getStatus()))){
                 return "true";
             }else{
                 return "false";
             }
         }
     }
+    @RequestMapping("/registerAdmin")
+    @ResponseBody
+    public String registerAdmin(User user){
+        User user1 = adminService.checkUser(user);
+        if (user1==null){
+            boolean s = adminService.registerAdmin(user);
+            if (s){
+                return  "true";
+            }
+            return "false";
+        }else{
+            return "false";
+        }
+    }
+    //用户登陆
+    @RequestMapping("/userlogin")
+    @ResponseBody
+    public String login(User admin){
+        User u= adminService.userlogin(admin);
+        System.out.println(u);
+        if (admin.getUserphone()==u.getUserphone()&&admin.getPassword()==admin.getPassword()){;
+            return "true";
+        }else{
+           return "false";
+        }
+    }
     @RequestMapping("/register")
     @ResponseBody
     public String register(User user){
-        boolean s = adminService.register(user);
-        if (s){
-            return  "true";
+        User user1 = adminService.checkUser(user);
+        if (user1==null){
+            user.setStatus("1");
+            user.setBalance(0.00);
+            boolean s = adminService.register(user);
+            if (s){
+                return  "true";
+            }
+            return "false";
+        }else{
+            return "false";
         }
-        return "false";
     }
     @RequestMapping("/updateUser")
     @ResponseBody
@@ -57,5 +90,17 @@ public class LoginControl {
     @ResponseBody
     public List<User> queryUser(){
         return adminService.queryUser();
+    }
+    //后台产看用户管理员
+    @RequestMapping("/queryUserByStatus")
+    @ResponseBody
+    public List<User> queryUserByStatus(String status,String member) {
+        return adminService.queryUserByStatus(status, member);
+    }
+    //通过手机和openid查看用户
+    @RequestMapping("/queryUserByPhoOpe")
+    @ResponseBody
+    public User queryUserByPhoOpe(String phone,String openid){
+        return adminService.lookUserByPho(phone,openid);
     }
 }

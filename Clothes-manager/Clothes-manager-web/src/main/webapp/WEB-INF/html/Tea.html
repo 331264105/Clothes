@@ -5,6 +5,7 @@
     <title></title>
 </head>
 <body>
+<button>切换</button>
 <!--<form id="addform" action="ShoppingUp" method="post" enctype="multipart/form-data">
     <table>
         <tr><td>
@@ -67,14 +68,15 @@
     <input type="submit" value="查询"/>
 </form>-->
 <!--轮播-->
-<!--<form action="upTeaCarousel" method="post" enctype="multipart/form-data">
-    选择图片：<input type="file" name="files"/>
-    轮播图名称:<input type="text" name="name"/>
+<form  action="userlogin" method="post">
+    openid：<input type="text" name="openid"/>
+    userphone:<input type="text" name="userphone"/>
+    password:<input type="text" name="password" />
     <input type="submit" value="提交图片"/>
-</form>-->
-<!--<form action="updateTeaImage" method="post" enctype="multipart/form-data">
-    选择图片：<input type="file" name="files"/>
-    轮播图名称:<input type="text" name="name"/>
+</form>
+<!--<form action="qe" method="post">
+    &lt;!&ndash;选择图片：<input type="file" name="files"/>&ndash;&gt;
+    id:<input type="text" name="id"/>
     <input type="submit" value="提交图片"/>
 </form>-->
 <!--<form id="addform" action="addTeaNew" method="post" enctype="multipart/form-data">
@@ -123,14 +125,42 @@
     });
 </script>-->
 <!--查看所有的新闻-->
-<form action="queryShoppingPage" method="post" >
-   <!-- totalnum:<input type="text" name="totalnum">
+<!--<script src="js/jquery-1.12.3.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var ace=[{cid: 9, pid:8,color: "焦糖色",size:"L",selected:"true",name:"hdj",url:"shdfj",num:12},{cid: 9, pid:8,color: "焦糖色",size:"L",selected:"true",name:"hdj",url:"shdfj",num:12}];
+        $("button").click(function(){
+            console.log("asdfsf");
+            $.ajax({
+                type: "post",
+                url: "ShoppingcarUp",
+//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
+                data:JSON.stringify(ace),
+                cache: false,
+                async : false,
+                dataType: "json",
+                contentType:"application/json",
+                success: function (data )
+                {
+                    alert("sdfsdfs");
+                },
+                error:function (data) {
+                    alert("请求失败！");
+                }
+            });
+
+        });
+    });
+
+</script>-->
+<!-- <form action="ShoppingcarUp" method="post" >
+   totalnum:<input type="text" name="totalnum">
     totalprice:<input type="text" name="totalprice">
-    dist:<input type="text" name="dist">
-   detailaddress:<input type="text" name="detailaddress">-->
-    pid:<input type="text" name="id">
-    <input type="submit"  value="查询所有新闻"/>
-</form>
+    name:<input type="text" name="name">
+    openid:<input type="text"id="sc" name="shoppingcars" style="display: none" value="">
+    phone:<input type="text" name="pid">-->
+    <!--<button id="ss" >点我</button>-->
+<!--</form>-->
 <!--删除新闻-->
 <!--<form action="removeTeaNew" method="post" >-->
     <!--<input type="text" name="id"/>-->

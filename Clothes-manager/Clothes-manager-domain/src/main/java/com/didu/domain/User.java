@@ -5,7 +5,6 @@ package com.didu.domain;
  */
 public class User {
     private int id;
-    private String username;
     private String password;
     private String status;
     private String userphone;
@@ -13,9 +12,8 @@ public class User {
     private String member;
     private String openid;
 
-    public User(int id, String username, String password, String status, String userphone, double balance, String member, String openid) {
+    public User(int id, String password, String status, String userphone, double balance, String member, String openid) {
         this.id = id;
-        this.username = username;
         this.password = password;
         this.status = status;
         this.userphone = userphone;
@@ -24,8 +22,7 @@ public class User {
         this.openid = openid;
     }
 
-    public User(String username, String password, String status, String userphone, double balance, String member, String openid) {
-        this.username = username;
+    public User(String password, String status, String userphone, double balance, String member, String openid) {
         this.password = password;
         this.status = status;
         this.userphone = userphone;
@@ -44,14 +41,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -106,7 +95,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", status='" + status + '\'' +
                 ", userphone='" + userphone + '\'' +

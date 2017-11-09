@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Administrator on 2017/10/26.
  */
 public interface Carouseldao {
-    //添加图片
+       //添加图片
     @Insert("insert into carousel(name,url) values(#{name},#{url})")
     /*@Options(keyProperty="id",useGeneratedKeys=true)*/
     int save(Carousel carousel);

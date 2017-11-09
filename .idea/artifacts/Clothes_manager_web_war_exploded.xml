@@ -28,7 +28,6 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.2.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.2.8.RELEASE" />
-          <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.10.3" />
           <element id="archive" name="Clothes-manager-service-1.0-SNAPSHOT.jar">
             <element id="module-output" name="Clothes-manager-service" />
           </element>
@@ -37,6 +36,7 @@
           </element>
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.26-incubating" />
+          <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.10.3" />
           <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.3.1" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.5" />
           <element id="archive" name="Clothes-common-1.0-SNAPSHOT.jar">

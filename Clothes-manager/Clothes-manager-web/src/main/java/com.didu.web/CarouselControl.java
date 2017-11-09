@@ -75,20 +75,7 @@ public class CarouselControl {
     @ResponseBody
     public List<Carousel> query(){
         List<Carousel> list = carouserService.query();
-        /* for(Image l:list){
-             SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-             String date = l.getCreatetime();
-             String s = format.format(date);
-             l.setCreatetime(s);
-         }*/
         System.out.println(list.toString());
-      /*   List<String> list = new ArrayList<>();
-       for (Image l:image){
-           String path = l.getPath();
-           String name = l.getName();
-           String realpath = path+name;
-           list.add(realpath);
-       }*/
         return list;
     }
     //删除图片

@@ -44,4 +44,29 @@ public class LoginServiceImpl implements LoginService {
         int i = loginDao.queryIdByOpenid(openid);
         return i;
     }
+
+    @Override
+    public List<User> queryUserByStatus(String status, String member) {
+        return loginDao.queryUserByStatus(status,member);
+    }
+
+    @Override
+    public User checkUser(User user) {
+        return loginDao.checkUser(user);
+    }
+
+    @Override
+    public User userlogin(User user) {
+        return loginDao.userlogin(user);
+    }
+
+    @Override
+    public boolean registerAdmin(User user) {
+        return loginDao.registerAdmin(user)>0?true:false;
+    }
+
+    @Override
+    public User lookUserByPho(String phone,String openid) {
+        return loginDao.lookUserByPho(phone,openid);
+    }
 }

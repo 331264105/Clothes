@@ -14,4 +14,9 @@ public interface LoginService {
     boolean updateUser(User user);
     List<User> queryUser();
     int queryIdByOpenid(String openid);
+    List<User> queryUserByStatus(String status,String memeber);
+    User checkUser(User user);
+    User userlogin(User user);
+    boolean registerAdmin(User user);
+    User lookUserByPho(String phone,String openid);
 }
