@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/Clothes-manager/Clothes-manager-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Clothes-manager/Clothes-manager-serviceImpl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Clothes-manager/Clothes-manager-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Clothes-manager/Clothes-manager-web/src/main/java/com.didu.web/payMoneyControl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Clothes-parent" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
