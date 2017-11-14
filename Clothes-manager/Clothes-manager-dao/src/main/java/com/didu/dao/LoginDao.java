@@ -19,7 +19,7 @@ public interface LoginDao {
                 @Result(property = "balance", column = "balance"),
         })
         User login(User admin);
-        @Insert("insert into user (password,userphone,openid,status,balance) values(#{password},#{userphone},#{openid},#{status},#{balance})")
+        @Insert("insert into user (password,userphone,openid,member,balance) values(#{password},#{userphone},#{openid},#{member},#{balance})")
         int register(User user);
         @Insert("insert into user (password,userphone,status) values(#{password},#{userphone},#{status})")
         int registerAdmin(User user);

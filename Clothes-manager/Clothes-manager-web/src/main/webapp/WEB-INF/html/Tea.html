@@ -63,22 +63,39 @@
 <!--<form action="selectAllTea" method="get" name="selectAllTea">
     <input type="submit" value="查询"/>
 </form>-->
-<!--<form action="selectTeaDitails" method="get" name="TeaDitails">
-    茶id:<input type="text" name="id"/>
+<!--<form action="queryOrder" method="post">
+    status:<input type="text" name="status"/>
+    serial:<input type="text" name="serial"/>
+    page:<input type="text" name="page" value="1"/>
+    &lt;!&ndash;<input type="text" name="pid" value="1" style="display: none"/>&ndash;&gt;
     <input type="submit" value="查询"/>
 </form>-->
 <!--轮播-->
-<form  action="userlogin" method="post">
-    openid：<input type="text" name="openid"/>
-    userphone:<input type="text" name="userphone"/>
-    password:<input type="text" name="password" />
-    <input type="submit" value="提交图片"/>
-</form>
-<!--<form action="qe" method="post">
-    &lt;!&ndash;选择图片：<input type="file" name="files"/>&ndash;&gt;
-    id:<input type="text" name="id"/>
+<!--<form  action="updateDaoji" method="post">
+    datatime：<input type="text" name="datatime"/>
+    volume:<input type="text" name="volume"/>
+    pageBean:<input type="text" name="page" value="1" style="display: none"/>
     <input type="submit" value="提交图片"/>
 </form>-->
+<form action="updateShopping" method="post"  >
+    <!--id：<input type="text" name="id"/>-->
+    name：<input type="text" name="name"/>1
+    <!--daytime：<input type="text" name="daytime"/>-->
+    cid:<input type="text" name="cid"/>1
+    price:<input type="text" name="price"/>1
+    price1:<input type="text" name="price1"/>1
+    price1:<input type="text" name="price2"/>1
+    repertory:<input type="text" name="repertory"/>1
+    volume:<input type="text" name="volume"/>1
+    <!--property:<input type="text" name="property"/>-->
+    goodsmark:<input type="text" name="goodsmark"/>1
+    yetroll:<input type="text" name="yetroll"/>1
+    roll:<input type="text" name="roll"/>1
+    location:<input type="text" name="location"/>1
+    <!--图片:<input type="file" name="files"/>-->
+    id:<input type="text" name="id" value="10" style="display: none"/>
+    <input type="submit" value="提交图片"/>
+</form>
 <!--<form id="addform" action="addTeaNew" method="post" enctype="multipart/form-data">
     <table>
         <tr><td>
@@ -125,15 +142,15 @@
     });
 </script>-->
 <!--查看所有的新闻-->
-<!--<script src="js/jquery-1.12.3.min.js"></script>
+<script src="js/jquery-1.12.3.min.js"></script>
 <script>
     $(document).ready(function(){
-        var ace=[{cid: 9, pid:8,color: "焦糖色",size:"L",selected:"true",name:"hdj",url:"shdfj",num:12},{cid: 9, pid:8,color: "焦糖色",size:"L",selected:"true",name:"hdj",url:"shdfj",num:12}];
+        var ace={ordersShopList:[{serial: "1231", name:"132",color: "焦糖色",size:"L",url:"12345",price:"1231",shopcarid:1,num:12,pid:1}],serial:"123456",pid:1,totalnum:"12",totalprice:12.00,dist:12.00,address:"hanghao",uname:"daheisb",userphone:"1314454644",gongprice:12.00,live:"fdfd",status:"1"};
         $("button").click(function(){
-            console.log("asdfsf");
+            console.log(ace);
             $.ajax({
                 type: "post",
-                url: "ShoppingcarUp",
+                url: "addOrders",
 //      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
                 data:JSON.stringify(ace),
                 cache: false,
@@ -142,7 +159,7 @@
                 contentType:"application/json",
                 success: function (data )
                 {
-                    alert("sdfsdfs");
+                    alert("成功");
                 },
                 error:function (data) {
                     alert("请求失败！");
@@ -152,7 +169,7 @@
         });
     });
 
-</script>-->
+</script>
 <!-- <form action="ShoppingcarUp" method="post" >
    totalnum:<input type="text" name="totalnum">
     totalprice:<input type="text" name="totalprice">

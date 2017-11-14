@@ -54,7 +54,8 @@ public class LoginControl {
     public String login(User admin){
         User u= adminService.userlogin(admin);
         System.out.println(u);
-        if (admin.getUserphone()==u.getUserphone()&&admin.getPassword()==admin.getPassword()){;
+        System.out.println(admin+"111111"+admin.getPassword()+admin.getUserphone());
+        if (admin.getUserphone().equals(u.getUserphone())&&admin.getPassword().equals(u.getPassword())){;
             return "true";
         }else{
            return "false";
@@ -65,7 +66,7 @@ public class LoginControl {
     public String register(User user){
         User user1 = adminService.checkUser(user);
         if (user1==null){
-            user.setStatus("1");
+            user.setMember("1");
             user.setBalance(0.00);
             boolean s = adminService.register(user);
             if (s){
