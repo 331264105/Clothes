@@ -34,6 +34,7 @@ public class LoginControl {
             }
         }
     }
+    //注册
     @RequestMapping("/registerAdmin")
     @ResponseBody
     public String registerAdmin(User user){
@@ -51,15 +52,25 @@ public class LoginControl {
     //用户登陆
     @RequestMapping("/userlogin")
     @ResponseBody
-    public String login(User admin){
+    public HashMap<String,Object> login(User admin){
+        HashMap<String,Object> map = new HashMap<>();
         User u= adminService.userlogin(admin);
-        System.out.println(u);
-        System.out.println(admin+"111111"+admin.getPassword()+admin.getUserphone());
-        if (admin.getUserphone().equals(u.getUserphone())&&admin.getPassword().equals(u.getPassword())){;
-            return "true";
+        if (u==null){
+            map.put("success","false");
+            map.put("msg","1");
+            return map;
         }else{
-           return "false";
+            if (admin.getUserphone().equals(u.getUserphone())&&admin.getPassword().equals(u.getPassword())){
+                map.put("success","true");
+                map.put("msg",u);
+                return map;
+            }else{
+                map.put("success","false");
+                map.put("msg","2");
+                return map;
+            }
         }
+
     }
     @RequestMapping("/register")
     @ResponseBody
@@ -80,7 +91,6 @@ public class LoginControl {
     @RequestMapping("/updateUser")
     @ResponseBody
     public String updateUser(User user){
-        System.out.println(user);
         boolean b =adminService.updateUser(user);
         if (b){
             return "true";
@@ -103,5 +113,31 @@ public class LoginControl {
     @ResponseBody
     public User queryUserByPhoOpe(String phone,String openid){
         return adminService.lookUserByPho(phone,openid);
+    }
+    //用户更改密码
+    @RequestMapping("/updatePassByphone")
+    @ResponseBody
+    public String updatePassByphone(User user){
+        boolean b = adminService.updatePassByphone(user);
+        if (b){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+    //添加用户总消费以及更改余额
+    @RequestMapping("/updateTotalSpend")
+    @ResponseBody
+    public String updateTotalSpend(User user,String userphone,String openid) {
+        User user1 = adminService.lookUserByPho(userphone,openid);
+        double totalspend = user1.getTotalspend();
+        double v = totalspend + user.getTotalspend();
+        user.setTotalspend(v);
+        boolean b = adminService.updateTotalSpend(user);
+        if (b) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 }

@@ -11,8 +11,9 @@ public class User {
     private double balance;
     private String member;
     private String openid;
+    private double totalspend;
 
-    public User(int id, String password, String status, String userphone, double balance, String member, String openid) {
+    public User(int id, String password, String status, String userphone, double balance, String member, String openid, double totalspend) {
         this.id = id;
         this.password = password;
         this.status = status;
@@ -20,15 +21,17 @@ public class User {
         this.balance = balance;
         this.member = member;
         this.openid = openid;
+        this.totalspend = totalspend;
     }
 
-    public User(String password, String status, String userphone, double balance, String member, String openid) {
+    public User(String password, String status, String userphone, double balance, String member, String openid, double totalspend) {
         this.password = password;
         this.status = status;
         this.userphone = userphone;
         this.balance = balance;
         this.member = member;
         this.openid = openid;
+        this.totalspend = totalspend;
     }
 
     public User() {
@@ -91,6 +94,14 @@ public class User {
         this.openid = openid;
     }
 
+    public double getTotalspend() {
+        return totalspend;
+    }
+
+    public void setTotalspend(double totalspend) {
+        this.totalspend = totalspend;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -101,6 +112,7 @@ public class User {
                 ", balance=" + balance +
                 ", member='" + member + '\'' +
                 ", openid='" + openid + '\'' +
+                ", totalspend=" + totalspend +
                 '}';
     }
 }

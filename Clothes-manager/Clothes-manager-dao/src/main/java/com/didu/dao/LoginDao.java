@@ -19,7 +19,7 @@ public interface LoginDao {
                 @Result(property = "balance", column = "balance"),
         })
         User login(User admin);
-        @Insert("insert into user (password,userphone,openid,member,balance) values(#{password},#{userphone},#{openid},#{member},#{balance})")
+        @Insert("insert into user (password,userphone,openid,member,balance,totalspend) values(#{password},#{userphone},#{openid},#{member},#{balance},#{totalspend})")
         int register(User user);
         @Insert("insert into user (password,userphone,status) values(#{password},#{userphone},#{status})")
         int registerAdmin(User user);
@@ -31,7 +31,7 @@ public interface LoginDao {
         int queryIdByOpenid(String openid);
         @SelectProvider(type = UserSql.class,method ="queryUserByStatus")
         List<User> queryUserByStatus(String status,String member);
-        @Select("select * from user where userphone=#{userphone}")
+        @Select("select * from user where openid=#{openid} or userphone=#{userphone}")
         User checkUser(User user);
         @Select("select * from user where openid=#{openid}")
         @Results({
@@ -44,4 +44,8 @@ public interface LoginDao {
         User userlogin(User admin);
         @SelectProvider(type = UserSql.class,method ="lookUser")
         User lookUserByPho(String phone,String openid);
+        @Update("update user set password=#{password} where userphone=#{userphone}")
+        int updatePassByphone(User user);
+        @Update("update user set totalspend=#{totalspend}, balance=#{balance} where id=#{id}")
+        int updateTotalSpend(User user);
 }

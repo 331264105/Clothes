@@ -30,7 +30,6 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public boolean updateUser(User user) {
         int a = loginDao.updateUser(user);
-        System.out.println(a);
         return a>0?true:false;
     }
 
@@ -68,5 +67,15 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public User lookUserByPho(String phone,String openid) {
         return loginDao.lookUserByPho(phone,openid);
+    }
+
+    @Override
+    public boolean updatePassByphone(User user) {
+        return loginDao.updatePassByphone(user)>0?true:false;
+    }
+
+    @Override
+    public boolean updateTotalSpend(User user) {
+        return loginDao.updateTotalSpend(user)>0?true:false;
     }
 }

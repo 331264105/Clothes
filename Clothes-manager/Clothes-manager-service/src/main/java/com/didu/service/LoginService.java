@@ -19,4 +19,6 @@ public interface LoginService {
     User userlogin(User user);
     boolean registerAdmin(User user);
     User lookUserByPho(String phone,String openid);
+    boolean updatePassByphone(User user);
+    boolean updateTotalSpend(User user);
 }
