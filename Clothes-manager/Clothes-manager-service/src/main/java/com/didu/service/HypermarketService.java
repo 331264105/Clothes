@@ -14,4 +14,5 @@ public interface HypermarketService {
     boolean removeHypermarket(int id);
     boolean updateImage(Hypermarket hypermarket);
     List<Hypermarket> query(String property);
+    boolean updateHerpermarkettwo(Hypermarket hypermarket);
 }

@@ -38,6 +38,6 @@ public interface Hypermarketdao {
     //修改专场
     @Update("update hypermarket set url=#{url},title=#{title},time=#{time},location=#{location},describ=#{describ},price=#{price},grade=#{grade},remark=#{remark},pai=#{pai} where id=#{id}")
     int updateHypermarket(Hypermarket hypermarket);
-
-
+    @Update("update hypermarket set title=#{title},time=#{time},location=#{location},describ=#{describ},price=#{price},grade=#{grade},remark=#{remark},pai=#{pai} where id=#{id}")
+    int updateHerpermarkettwo(Hypermarket hypermarket);
 }

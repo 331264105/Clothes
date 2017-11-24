@@ -41,4 +41,9 @@ public class HypermarketServiceImpl implements HypermarketService {
     public List<Hypermarket> query(String property) {
         return hypermarketdao.query(property);
     }
+
+    @Override
+    public boolean updateHerpermarkettwo(Hypermarket hypermarket) {
+        return hypermarketdao.updateHerpermarkettwo(hypermarket)>0?true:false;
+    }
 }

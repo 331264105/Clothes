@@ -121,5 +121,15 @@ public class HypermarketControl {
         }
         return "false";
     }
-
+    //
+    @RequestMapping("/updateHerpermarkettwo")
+    @ResponseBody
+    public String updateHerpermarkettwo(Hypermarket hypermarket){
+        boolean b = hypermarketService.updateHerpermarkettwo(hypermarket);
+        if (b){
+            return "true";
+        }else {
+            return "false";
+        }
+    }
 }

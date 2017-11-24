@@ -25,7 +25,7 @@ public interface LoginDao {
         int registerAdmin(User user);
         @UpdateProvider(type = UserSql.class,method ="updateUser")
         int updateUser(User user);
-        @Select("select * from user")
+        @Select("select * from user where status is null order by totalspend desc")
         List<User> queryUser();
         @Select("select id from user where openid=#{openid}")
         int queryIdByOpenid(String openid);
